@@ -1,0 +1,38 @@
+name: Run Code Name Generator Script
+
+on:
+  workflow_dispatch:  # Allows manual or external triggering
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'  # Specify the version you need
+
+      - name: Run code name generator script
+        run: |
+          python -c "
+import random
+# List of adjectives
+adjectives = ['Cyber', 'Crimson', 'Red', 'Black', 'White', 'Blue', 'Gray', 'Shadow', 
+              'Silent', 'Phantom', 'Iron', 'Swift', 'Steel', 'Golden', 'Arctic', 
+              'Shadowed', 'Dark', 'Lone', 'Storm', 'Night', 'Electric', 'Mysterious', 
+              'Rapid', 'Wild', 'Savage', 'Invisible', 'Fierce', 'Ghostly', 'Vivid']
+# List of nouns
+nouns = ['Bear', 'Panther', 'Tiger', 'Eagle', 'Wolf', 'Fox', 'Panda', 'Lion', 
+         'Hawk', 'Falcon', 'Scorpion', 'Viper', 'Owl', 'Raven', 'Cougar', 
+         'Hornet', 'Lynx', 'Python', 'Grizzly', 'Cobra', 'Stallion', 'Coyote', 
+         'Shark', 'Dragon', 'Condor', 'Pineapple', 'Apple', 'Peach', 'Mango', 
+         'Orange', 'Banana', 'Grape', 'Salmon', 'Falafel', 'Sushi', 'Pizza', 
+         'Taco', 'Burrito', 'Noodle', 'Burger', 'Avocado', 'Chili', 'Lemon']
+# Generate a random code name
+random_adjective = random.choice(adjectives)
+random_noun = random.choice(nouns)
+print(f'{random_adjective} {random_noun}')
+"
